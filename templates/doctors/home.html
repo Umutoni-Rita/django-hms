@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+
+{% block title %}Home{% endblock %}
+
+{% block content %}
+<h1>Welcome to the Healthcare Management System</h1>
+<p>This is the custom homepage where you can navigate to different sections.</p>
+<nav>
+    <a href="{% url 'doctor_list' %}">Doctors</a> |
+    <a href="{% url 'patient_list' %}">Patients</a> |
+    <a href="{% url 'appointment_list' %}">Appointments</a>
+</nav>
+{% endblock %}

@@ -1,0 +1,25 @@
+<h1>Patients</h1>
+<a href="{% url 'patient_create' %}">Add New Patient</a>
+<table>
+    <tr>
+        <th>Name</th>
+        <th>Gender</th>
+        <th>Date of Birth</th>
+        <th>Contact Number</th>
+        <th>Email</th>
+        <th>Actions</th>
+    </tr>
+    {% for patient in patients %}
+    <tr>
+        <td>{{ patient.first_name }} {{ patient.last_name }}</td>
+        <td>{{ patient.gender }}</td>
+        <td>{{ patient.date_of_birth }}</td>
+        <td>{{ patient.contact_number }}</td>
+        <td>{{ patient.email }}</td>
+        <td>
+            <a href="{% url 'patient_update' patient.id %}">Edit</a>
+            <a href="{% url 'patient_delete' patient.id %}">Delete</a>
+        </td>
+    </tr>
+    {% endfor %}
+</table>

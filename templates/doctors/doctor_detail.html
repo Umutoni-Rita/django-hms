@@ -1,0 +1,9 @@
+<h2>Doctor Details</h2>
+<p>First Name: {{ doctor.first_name }}</p>
+<p>Last Name: {{ doctor.last_name }}</p>
+<p>Category: {{ doctor.category }}</p>
+<p>Experience: {{ doctor.experience_years }} years</p>
+<p>Contact: {{ doctor.contact_number }}</p>
+<p>Email: {{ doctor.email }}</p>
+<a href="{% url 'doctor-update' doctor.pk %}">Edit</a>
+<a href="{% url 'doctor-list' %}">Back to List</a>

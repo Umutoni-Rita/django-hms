@@ -1,0 +1,11 @@
+<h2>Doctors</h2>
+<a href="/doctors/create">Add New Doctor</a>
+<ul>
+    {% for doctor in doctors %}
+        <li>
+            Dr. {{ doctor.first_name }} {{ doctor.last_name }} - {{ doctor.specialization }} 
+            <a href="{{doctor.id}}/update">Edit</a> | 
+            <a href="{{doctor.id}}/delete">Delete</a>
+        </li>
+    {% endfor %}
+</ul>

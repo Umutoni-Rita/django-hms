@@ -1,0 +1,32 @@
+from doctors.models import Doctor
+from faker import Faker
+import random
+
+fake = Faker()
+
+categories = [
+    "Internal Medicine", "Pediatrics", "Gynecology",
+    "Surgery", "Laboratory", "Neonatology"
+]
+
+doctors = []
+
+for _ in range(50):
+    first_name = fake.first_name()
+    last_name = fake.last_name()
+    category = random.choice(categories)
+    experience_years = random.randint(1, 30)
+    contact_number = fake.phone_number()[:15]
+    email = fake.unique.email()
+    doctor = Doctor(
+        first_name=first_name,
+        last_name=last_name,
+        category=category,
+        experience_years=experience_years,
+        contact_number=contact_number,
+        email=email
+    )
+    doctors.append(doctor)
+
+Doctor.objects.bulk_create(doctors)
+print("50 fake doctor entries created successfully!")
