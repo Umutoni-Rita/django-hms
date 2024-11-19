@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django_extensions',
     'doctors',
     'patients',
     'appointments',
@@ -60,6 +61,7 @@ TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
         'DIRS': [os.path.join(BASE_DIR , 'templates')],
+        
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -73,6 +75,7 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'hms.wsgi.application'
+ASGI_APPLICATION = "hms.asgi.application"
 APPEND_SLASH=False
 
 

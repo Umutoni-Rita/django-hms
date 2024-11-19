@@ -1,3 +1,30 @@
+from patients.models import Patient
+from faker import Faker
+import random
+fake = Faker()
+gender_choices = ['Male','Female']
+patients = []
+
+for _ in range(20):
+    first_name = fake.first_name()
+    last_name = fake.last_name()
+    gender = random.choice(gender_choices)
+    date_of_birth = fake.date_of_birth(minimum_age=1, maximum_age=80) 
+    contact_number = fake.phone_number()[:15]
+    email = fake.unique.email()
+    patient = Patient(
+        first_name=first_name,
+        last_name=last_name,
+        gender=gender,
+        date_of_birth=date_of_birth,
+        contact_number=contact_number,
+        email=email
+    )
+    patients.append(patient)
+
+Patient.objects.bulk_create(patients)
+
+------------------------------------------------------
 from doctors.models import Doctor
 from faker import Faker
 import random

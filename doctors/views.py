@@ -4,7 +4,7 @@ from doctors.forms import DoctorForm
 from django.contrib.auth.decorators import login_required # type: ignore
 
 # Read Doctors
-@login_required(login_url='/login')
+@login_required(login_url='/login/')
 def doctor_list(request):
     doctors = Doctor.objects.all()
     return render(request, 'doctors/doctor_list.html', {'doctors': doctors})

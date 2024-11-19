@@ -13,7 +13,7 @@ def register(request):
             user = authenticate(username=new_user.username, password=form.cleaned_data['password'])
             if user is not None:
                 login(request, user)
-            return redirect('dashboard')  # Redirect to some page after successful registration
+            return redirect('')  # Redirect to some page after successful registration
     else:
         form = UserRegistrationForm()
     return render(request, 'register.html', {'form': form})

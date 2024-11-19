@@ -12,15 +12,15 @@
     <header>
         <nav>
             <a href="/">Home</a> |
-            <a href="/doctors">Doctors</a> |
-            <a href="/patients">Patients</a> |
-            <a href="/appointments">Appointments</a> |
-            <a href="/login">Login</a> |
-            <a href="/register">Register</a>
+            <a href="doctors/">Doctors</a> |
+            <a href="patients/">Patients</a> |
+            <a href="appointments/">Appointments</a> |
+            <a href="login/">Login</a> |
+            <a href="register/">Register</a>
             
             <!-- Display logout button if the user is authenticated -->
             {% if user.is_authenticated %}
-                <form method="POST" action="/logout" style="display:inline;">
+                <form method="POST" action="logout/" style="display:inline;">
                     {% csrf_token %}
                     <button type="submit" style="background:none; border:none; color:red; text-decoration:underline; cursor:pointer;">Logout</button>
                 </form>
