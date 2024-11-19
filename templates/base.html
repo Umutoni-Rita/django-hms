@@ -3,18 +3,31 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% block title %}Healthcare Management System{% endblock %}</title>
+    <!-- Uncomment if you want to add external styling -->
     <!-- <link rel="stylesheet" href="{% static 'css/style.css' %}"> -->
 </head>
 <body>
     <header>
         <nav>
-            <a href="{% url 'home' %}">Home</a> |
-            <a href="{% url 'doctor_list' %}">Doctors</a> |
-            <a href="{% url 'patient_list' %}">Patients</a> |
-            <a href="{% url 'appointment_list' %}">Appointments</a>
+            <a href="/">Home</a> |
+            <a href="/doctors">Doctors</a> |
+            <a href="/patients">Patients</a> |
+            <a href="/appointments">Appointments</a> |
+            <a href="/login">Login</a> |
+            <a href="/register">Register</a>
+            
+            <!-- Display logout button if the user is authenticated -->
+            {% if user.is_authenticated %}
+                <form method="POST" action="/logout" style="display:inline;">
+                    {% csrf_token %}
+                    <button type="submit" style="background:none; border:none; color:red; text-decoration:underline; cursor:pointer;">Logout</button>
+                </form>
+            {% endif %}
         </nav>
     </header>
+
     <main>
         {% block content %}
         <!-- Content from child templates will be injected here -->

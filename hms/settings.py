@@ -73,6 +73,7 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'hms.wsgi.application'
+APPEND_SLASH=False
 
 
 # Database
@@ -130,3 +131,7 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+# Authentication settings
+LOGIN_URL = 'login'  # Redirect to login if not authenticated
+LOGIN_REDIRECT_URL = '/'  # After login, redirect to home page
