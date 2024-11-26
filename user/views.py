@@ -1,6 +1,9 @@
 from django.shortcuts import render, redirect
 from .forms import UserRegistrationForm
 from django.contrib.auth import authenticate, login
+from patients.models import Patient
+from doctors.models import Doctor
+from appointments.models import Appointment
 
 def register(request):
     if request.method == 'POST':
@@ -20,4 +23,19 @@ def register(request):
 
 def home(request):
     return render(request, 'base.html')
+
+
+def dashboard(request):
+    doctor_count = Doctor.objects.count()
+    patient_count = Patient.objects.count()
+    appointment_count = Appointment.objects.count()
+
+    context = {
+        'doctor_count': doctor_count,
+        'patient_count': patient_count,
+        'appointment_count': appointment_count,
+    }
+
+    return render(request, 'dashboard.html', context)
+
 

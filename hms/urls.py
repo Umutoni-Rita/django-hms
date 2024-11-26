@@ -6,6 +6,7 @@ from user import views as user_views
 urlpatterns = [
     path('',user_views.home, name='home'), 
     path('admin/', admin.site.urls),
+    path('dashboard/', user_views.dashboard, name='dashboard'),
     path('appointments/', include('appointments.urls')),  
     path('doctors/', include('doctors.urls')),  
     path('patients/', include('patients.urls')), 

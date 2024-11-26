@@ -17,7 +17,7 @@ class Migration(migrations.Migration):
                 ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
                 ('first_name', models.CharField(max_length=100)),
                 ('last_name', models.CharField(max_length=100)),
-                ('category', models.CharField(choices=[('Internal Medicine', 'Internal Medicine'), ('Pediatrics', 'Pediatrics'), ('Gynecology', 'Gynecology'), ('Surgery', 'Surgery'), ('Laboratory', 'Laboratory'), ('Neonatology', 'Neonatology')], max_length=50)),
+                ('category', models.CharField(choices=[('Internal_Medicine', 'Internal_Medicine'), ('Pediatrics', 'Pediatrics'), ('Gynecology', 'Gynecology'), ('Surgery', 'Surgery'), ('Laboratory', 'Laboratory'), ('Neonatology', 'Neonatology')], max_length=50)),
                 ('experience_years', models.PositiveIntegerField()),
                 ('contact_number', models.CharField(blank=True, max_length=15, null=True)),
                 ('email', models.EmailField(max_length=254, unique=True)),

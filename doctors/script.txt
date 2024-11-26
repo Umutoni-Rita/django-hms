@@ -5,7 +5,7 @@ fake = Faker()
 gender_choices = ['Male','Female']
 patients = []
 
-for _ in range(20):
+for _ in range(500000):
     first_name = fake.first_name()
     last_name = fake.last_name()
     gender = random.choice(gender_choices)
@@ -32,13 +32,13 @@ import random
 fake = Faker()
 
 categories = [
-    "Internal Medicine", "Pediatrics", "Gynecology",
+    "Internal_Medicine", "Pediatrics", "Gynecology",
     "Surgery", "Laboratory", "Neonatology"
 ]
 
 doctors = []
 
-for _ in range(50):
+for _ in range(500000):
     first_name = fake.first_name()
     last_name = fake.last_name()
     category = random.choice(categories)
@@ -56,4 +56,41 @@ for _ in range(50):
     doctors.append(doctor)
 
 Doctor.objects.bulk_create(doctors)
-print("50 fake doctor entries created successfully!")
+print("500000 fake doctor entries created successfully!")
+
+-----------
+from appointments.models import Appointment
+from patients.models import Patient
+from doctors.models import Doctor
+from faker import Faker
+import random
+
+fake = Faker()
+
+patients = list(Patient.objects.all())
+doctors = list(Doctor.objects.all())
+
+reasons = [
+    "Routine check-up", "Follow-up visit", "Consultation for symptoms",
+    "Pre-surgery consultation", "Post-surgery follow-up", "Blood test results review",
+    "Health assessment", "Medication prescription", "Monthly visit", "Post-surgery follow-up"
+]
+
+appointments = []
+
+for _ in range(150000):
+    patient = random.choice(patients)
+    doctor = random.choice(doctors)
+    appointment_date = fake.date_time_between(start_date="-1y", end_date="now")  # Random date within the last year
+    reason = random.choice(reasons)
+    appointment = Appointment(
+        patient=patient,
+        doctor=doctor,
+        appointment_date=appointment_date,
+        reason=reason
+    )
+    appointments.append(appointment)
+
+
+Appointment.objects.bulk_create(appointments)
+print("500000 fake appointment entries created successfully!")
