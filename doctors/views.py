@@ -1,13 +1,21 @@
 from django.shortcuts import render, redirect
 from doctors.models import Doctor
 from doctors.forms import DoctorForm
+from django.core.paginator import Paginator
 # from django.contrib.auth.decorators import login_required # type: ignore
 
 # Read Doctors
 # @login_required(login_url='/login/')
+
+
 def doctor_list(request):
-    doctors = Doctor.objects.all()
-    return render(request, 'doctors/doctor_list.html', {'doctors': doctors})
+    doctor_list = Doctor.objects.all()  
+    paginator = Paginator(doctor_list, 500)  
+
+    page_number = request.GET.get('page')  
+    page_obj = paginator.get_page(page_number)  
+    return render(request, 'doctor_list.html', {'page_obj': page_obj})
+
 
 # Create Doctor
 def doctor_create(request):

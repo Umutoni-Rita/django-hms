@@ -9,8 +9,12 @@ def create_doctor(db: Session, doctor: schemas.DoctorBase):
     db.refresh(db_doctor)
     return db_doctor
 
-def get_doctors(db: Session, skip: int = 0, limit: int = 1500):
-    return db.query(models.Doctor).offset(skip).limit(limit).all()
+def get_doctors(db: Session, skip: int = 0, limit: int = None):
+    query = db.query(models.Doctor)
+    if limit:  # If a limit is set, use it, otherwise fetch all data
+        query = query.offset(skip).limit(limit)
+    return query.all()  # Fetch all rows if no limit
+
 
 def create_patient(db: Session, patient: schemas.PatientBase):
     db_patient = models.Patient(**patient.dict())

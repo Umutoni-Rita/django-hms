@@ -17,13 +17,31 @@
 
     <div class="container my-4">
         <h2 class="mb-4">Doctors</h2>
-        
+
         <!-- Add New Doctor button -->
         <a href="{% url 'doctor_create' %}" class="btn btn-success mb-3">Add New Doctor</a>
+        <!-- Pagination Controls -->
+        <div class="d-flex justify-content-between mt-3">
+            <div>
+                {% if page_obj.has_previous %}
+                    <a href="?page=1" class="btn btn-secondary btn-sm">First</a>
+                    <a href="?page={{ page_obj.previous_page_number }}" class="btn btn-secondary btn-sm">Previous</a>
+                {% endif %}
+            </div>
+            <div>
+                {% if page_obj.has_next %}
+                    <a href="?page={{ page_obj.next_page_number }}" class="btn btn-secondary btn-sm">Next</a>
+                    <a href="?page={{ page_obj.paginator.num_pages }}" class="btn btn-secondary btn-sm">Last</a>
+                {% endif %}
+            </div>
+        </div>
+
+        <!-- Back to Home Link -->
+        <a href="/" class="btn btn-primary mt-3">Home</a>
 
         <!-- Doctor List -->
         <ul class="list-group">
-            {% for doctor in doctors %}
+            {% for doctor in page_obj %}
                 <li class="list-group-item">
                     Dr. {{ doctor.first_name }} {{ doctor.last_name }} - {{ doctor.specialization }}
                     <div class="float-end">
@@ -33,6 +51,22 @@
                 </li>
             {% endfor %}
         </ul>
+
+        <!-- Pagination Controls -->
+        <div class="d-flex justify-content-between mt-3">
+            <div>
+                {% if page_obj.has_previous %}
+                    <a href="?page=1" class="btn btn-secondary btn-sm">First</a>
+                    <a href="?page={{ page_obj.previous_page_number }}" class="btn btn-secondary btn-sm">Previous</a>
+                {% endif %}
+            </div>
+            <div>
+                {% if page_obj.has_next %}
+                    <a href="?page={{ page_obj.next_page_number }}" class="btn btn-secondary btn-sm">Next</a>
+                    <a href="?page={{ page_obj.paginator.num_pages }}" class="btn btn-secondary btn-sm">Last</a>
+                {% endif %}
+            </div>
+        </div>
 
         <!-- Back to Home Link -->
         <a href="/" class="btn btn-primary mt-3">Home</a>

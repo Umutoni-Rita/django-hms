@@ -10,5 +10,5 @@ def create_doctor(doctor: schemas.DoctorBase, db: Session = Depends(dependencies
     return crud.create_doctor(db=db, doctor=doctor)
 
 @router.get("/", response_model=list[schemas.DoctorResponse])
-def get_doctors(skip: int = 0, limit: int = 100, db: Session = Depends(dependencies.get_db)):
+def get_doctors(skip: int = 0, limit: int = None, db: Session = Depends(dependencies.get_db)):
     return crud.get_doctors(db=db, skip=skip, limit=limit)
