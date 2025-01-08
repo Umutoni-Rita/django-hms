@@ -13,7 +13,7 @@ def get_doctors(db: Session, skip: int = 0, limit: int = None):
     query = db.query(models.Doctor)
     if limit:  # If a limit is set, use it, otherwise fetch all data
         query = query.offset(skip).limit(limit)
-    return query.all()  # Fetch all rows if no limit
+    return query.all()  
 
 
 def create_patient(db: Session, patient: schemas.PatientBase):
@@ -40,5 +40,12 @@ def create_appointment(db: Session, appointment: schemas.AppointmentBase):
     db.refresh(db_appointment)
     return db_appointment
 
-def get_appointments(db: Session, skip: int = 0):
+def get_appointments(db: Session, skip: int = 0, limit: int= None):
     return db.query(models.Appointment).offset(skip).all()
+
+# def get_doctors(db: Session, skip: int = 0, limit: int = None):
+#     query = db.query(models.Doctor)
+#     if limit:  # If a limit is set, use it, otherwise fetch all data
+#         query = query.offset(skip).limit(limit)
+#     return query.all()  
+
